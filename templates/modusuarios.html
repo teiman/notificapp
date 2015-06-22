@@ -1,0 +1,99 @@
+<style type="text/css">
+    .subnavegador li[title="usuarios"]{background-color: #2c2b2b;}
+    .subnavegador li[title="usuarios"] a{ color: #cfc8af;}
+</style>
+<patTemplate:tmpl name="usuarios">
+<div id="wrapper_panel" class="grid wfull">
+    <div id="usuarios" class="row">
+        <div class="titulo_pagina">
+            <h1 class="s1">Usuarios</h1>
+        </div><!-- fin div título página-->
+        <div id="alta_parametros" class="<patTemplate:var name="controlalta" /> c10 s1">
+            <form action="modusuarios.php" method="post">
+                <p class="c6">
+                    <label for="usuario">Usuario</label>
+                    <input type="hidden" name="modo" value="alta"/>
+                    <input type="text" name="usuario" class="c12" id="usuario"/>
+                </p>
+                <p class="c6 omega">
+                    <label for="contrasenna">Contraseña</label>
+                    <input type="password" id="contrasenna" class="c12 omega" name="pass"/>                  
+                </p>
+                <input type="submit" class="boton_standar c2 s10" value="alta de usuario"/>
+            </form>
+
+        </div><!--fin div alta parámetros-->
+    </div><!-- fin div usuarios -->
+
+    <p class="mensaje-aviso {CSSMENSAJE}"><patTemplate:var name="mensaje" modifier="html8"/></p>
+
+
+    <table  border="0" class="c10 s1">
+        <tr class="fila_0">
+            <th class="nombre c9">Usuario</th>
+            <th class="eliminar c2"></th>
+            <th class="eliminar c1 omega"></th>
+        </tr>
+
+        <patTemplate:tmpl name="list_entry">
+            <tr class="<patTemplate:var name="clase"/>">
+            <td class="c9">
+                <patTemplate:var name="login" modifier="html8"/>
+            </td>
+            <td class="c2">
+                <form action="modusuarios.php" method="post">
+                    <input type="hidden" name="modo" value="editar">
+                    <input type="hidden" name="id_usuario" value="<patTemplate:var name="id_usuario"/>">
+                    <input type="submit" id="editar" value="" width="5" name="editar"
+                           style="background:url(img/edit.gif) no-repeat; border:none; width:30px; height:30px;"
+                           title="editar">
+                </form>
+            </td>
+            <td class="c1 omega">
+                <form action="modusuarios.php" method="post">
+                    <input type="hidden" name="modo" value="eliminar">
+                    <input type="hidden" name="id_usuario" value="<patTemplate:var name="id_usuario"/>">
+                    <input type="submit" value="" width="5" name="borrar"
+                           style="background:url(img/no.png) no-repeat; border:none; width:30px; height:30px;"
+                           title="eliminar">
+                </form>
+            </td>
+            </tr>
+        </patTemplate:tmpl>
+
+        
+    </table>
+    <p class="num_pag c2">
+        <patTemplate:var name="contador"/>
+    </p>
+
+    <div class="next c4 s7">
+        <form action="modusuarios.php" method="post" class="c3 omega">
+            <input type="hidden" name="modo" value="">
+            <input type="submit" value="&lt;&lt; Inicio" class="boton_standar c12 omega" id="ir_inicio" />
+        </form>
+
+        <form action="modusuarios.php" method="post" class="c3 omega">
+            <input type="hidden" name="modo" value="haciadetras">
+            <input type="submit" value="&lt; Anterior" class="boton_standar c12 omega" id="atras1" />
+        </form>
+        <form action="modusuarios.php" method="post" class="c3 omega">
+            <input type="hidden" name="modo" value="haciadelante">
+            <input type="submit" value="Siguiente &gt;" class="boton_standar c12 omega" id="siguiente1"/>
+        </form>
+        <form action="modusuarios.php" method="post" class="c3 omega">
+            <input type="hidden" name="modo" value="">
+            <input type="submit" value="Final &gt;&gt;" class="boton_standar c12 omega" id="final"/>
+        </form>
+
+    </div><!--fin div botones de navegación tabla-->
+    <div class="clearfooter"></div>
+     <div  id="footer">
+        <div class="row pie" >
+            <p class="c5">2014-NotificAPP</p>
+            <p class="c1 s6"><a href="#"><img src="img/arriba.png"  alt="subir al comienzo"></a></p>
+       
+        </div>
+    </div> <!-- fin div footer-->
+</div><!-- fin div wrapper_panel-->
+</patTemplate:tmpl>

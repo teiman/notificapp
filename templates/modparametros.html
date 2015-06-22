@@ -1,0 +1,169 @@
+<style type="text/css">
+    .subnavegador li[title="parametros"]{background-color: #2c2b2b;}
+    .subnavegador li[title="parametros"] a{ color: #cfc8af;}
+</style>
+<patTemplate:tmpl name="parametros">
+    <div id="wrapper_panel" class="grid wfull">
+        <div id="parametros" class="row">
+            <div class="titulo_pagina">
+                <h1 class="s1">Par&aacute;metros</h1>
+            </div> <!-- fin div título página -->
+            <div id="alta_parametros" class="c10 s1 <patTemplate:var name="controlalta" />">
+                 <form action="modparametros.php" method="post" class="c12 omega">
+                    <p class="c5">
+                        <label for="alta_01" class="c6">Nombre</label>
+                        <input type="text" id="alta_01" class="c12" name="miparametro"/>
+                    </p>
+                    <p class="c7 omega">
+                        <label for="alta_02" class="c6">Valor</label>
+                        <input type="text" id="alta_02" class="c12 omega" name="mivalor"/>
+                    </p>
+                    <input type="hidden" name="modo" value="alta"/>
+                    <input type="submit" class="c2 end boton_standar" name="btnalta" value="Alta" id="alta"/>
+
+                </form>
+            </div> <!-- fin div alta parámetros -->
+
+
+            <div id="editar_parametro" class="c10 s1 <patTemplate:var name="controleditar" />">
+                 <form action="modparametros.php" class="omega" method="post">
+                    <p class="c5">
+                        <label for="alta_01">Nombre</label>
+                        <input type="text" id="alta_01" name="parametroeditable" class="c12" value="<patTemplate:var name="parametroeditar" />"/>
+                    </p>
+                    <p class="c7 omega">
+                        <label for="alta_02">Valor</label>
+                        <input type="text" id="alta_02" class="c12 omega" name="valoreditable" value="<patTemplate:var name="valoreditar" />"/>
+                    </p>
+                    <input type="hidden" name="modo" value="guardar"/>
+                    <input type="submit" name="btnguardar" value="Guardar" class="boton_standar c2 derecha" id="guardar1"/>
+                </form>
+                <form action="modparametros.php" method="post" class="c2 left omega">
+                    <input type="hidden" name="modo" value="cancelar"/>
+                    <input type="submit" name="btncancelar" value="Cancelar"  class="boton_standar c12" id="borrar1"/>
+                </form>
+
+            </div><!-- fin div editar parámetro -->
+            <p class="error s1 c11">
+            <patTemplate:var name="txto" modifier="html8"/>
+            </p>
+            <div id="resultado">
+            <table border="0" class="c12 param">
+                <tr class="fila_0">
+                    <th class="c4">Nombre</th>
+                    <th class="c6">Valor</th>
+                    <th class="c1">Editar</th>
+                    <th class="c1">Eliminar</th>
+                </tr>
+
+                <patTemplate:tmpl name="list_entry">
+                    <tr class="<patTemplate:var name="clase"/>">
+                        <td class="c4">
+                            <input type="hidden" name="id_system" value="">
+                    <patTemplate:var name="miparametro" modifier="html8"/>
+                    </td>
+                    <td class="c6">
+                        <input type="hidden" name="id_system_parem" value="eliminar">
+                    <patTemplate:var name="mivalor" modifier="html8"/>
+                    </td>
+                    <td class="c1">
+                        <form action="modparametros.php" method="post" >
+                            <input type="hidden" name="modo" value="editar">
+                            <input type="hidden" name="id_system" value="<patTemplate:var name="id"/>">
+                                   <input type="submit" id="editar" value="" width="5" name="editar" class="c12" title="Editar">
+                        </form>
+                    </td>
+                    <td class="c1">
+                        <form id="form_eliminar<patTemplate:var name="id"/>" action="modparametros.php" method="post">
+                              <input type="hidden" name="modo" value="eliminar">
+                            <input type="hidden" name="id_system" value="<patTemplate:var name="id"/>">
+                                   <input type="submit" value="" width="5" name="borrar" class="c12" title="Eliminar" onclick="return borrar_dato(<patTemplate:var name="id"/>)">
+                        </form>
+                    </td>
+                    </tr>
+                </patTemplate:tmpl>
+
+                </tr>
+            </table>
+            <p class="num_pag c2">
+            <patTemplate:var name="contador"/>
+            </p>
+
+            <!-- Botones de navegación modificados por Silvia para seguir el mismo esquema que las otras páginas con botón de ir a Inicio e ir al Final-->
+
+            <div class="next c4 s8">
+                <patTemplate:tmpl name="paginacion">
+                    <form action="modparametros.php" method="post" class="c3 omega">
+                        <input type="hidden" name="modo" value="irinicio">
+                        <input type="submit" value="&lt;&lt; Inicio"  class="c12 omega boton_standar <patTemplate:var name="claseinicio" modifier="html8"/>" id="inicio"/>
+                    </form>
+
+                    <form action="modparametros.php" method="post" class="c3 omega">
+                        <input type="hidden" name="modo" value="haciadetras">
+                        <input type="submit" value="&lt; Anterior" class="boton_standar c12 omega" id="atras1"/>
+                    </form>
+                    <form action="modparametros.php" method="post" class="c3 omega">
+                        <input type="hidden" name="modo" value="haciadelante">
+                        <input type="submit" value="Siguiente &gt;" class="boton_standar c12 omega" id="siguiente1"/>
+                    </form>
+                    <form action="modparametros.php" method="post" class="c3 omega">
+                        <input type="hidden" name="modo" value="irfinal">
+                        <input type="submit" value="Final &gt;&gt;" class="<patTemplate:var name="clasefinal" modifier="html8"/>" id="final"/>
+                    </form>
+                </pattemplate:tmpl>
+            </div> <!-- fin div para botones de navegación -->
+
+            <!-- Selector de registros por defecto añadido por Silvia, copiado de modcolanotificaciones.html -->
+            <div class="filas_tabla_param">
+                <form id="form_combo" action="modparametros.php" method="post">
+                    <input type="hidden" name="modo" value="numerofilas"/>
+                    <select onclick="enviar_formulario()" name="result" id="resultado_filtro" >
+                        <patTemplate:tmpl name="select_option">
+                            <option value="0" <patTemplate:var name="combouno" modifier="html8"/> >100</option>
+                            <option value="1" <patTemplate:var name="combodos" modifier="html8"/> >75</option>
+                            <option value="2" <patTemplate:var name="combotres" modifier="html8"/> >50</option>
+                            <option value="3" <patTemplate:var name="combocuatro" modifier="html8"/> >25</option>
+                        </patTemplate:tmpl>
+                    </select>
+                    <span>Registros por página</span>
+                </form>
+            </div> <!-- fin div filas_tabla_param -->
+
+        </div><!-- fin div class resultado-->
+
+        </div> <!-- fin div id parámetros -->
+
+         <div  id="footer">
+            <div class="row pie" >
+                <p class="c5">2014-NotificAPP</p>
+                <p class="c1 s6"><a href="#"><img src="img/arriba.png"  alt="subir al comienzo"></a></p>
+       
+            </div>
+        </div> <!-- fin div footer-->
+
+    </div> <!-- fin div id="wrapper_panel" -->
+
+    <script type="text/javascript">
+        function borrar_dato(id) {
+            cuadro_dialogo.si_no("Alerta", "¿Está seguro que desea eliminarlo?",
+                    function() {
+                        $("#form_eliminar" + id).submit();
+                        return true;
+                    },
+                    function() {
+                        return false;
+                    });
+            return false;
+        }
+        ;
+    </script>
+
+
+    <script type="text/javascript">
+
+        function enviar_formulario() {
+            $('#form_combo').submit();
+        }
+
+    </script>
+</pattemplate:tmpl>

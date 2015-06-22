@@ -1,0 +1,152 @@
+<style type="text/css">
+    .subnavegador li[title="configuracion"]{background-color: #2c2b2b;}
+    .subnavegador li[title="configuracion"] a{ color: #cfc8af;}
+</style>
+<div id="wrapper_panel" class="grid wfull">
+<div id="wrapper_conf" class="row">
+    <div class="titulo_pagina">
+        <h1 class="s1">Configuración</h1>
+    </div><!-- fin div título página-->
+    <div id="form_sql" class="c10 s1">
+        
+    <patTemplate:tmpl name="sql">
+        <form action="modconfiguracion.php" method="post">
+            
+            <p class="c12 omega">
+                <label for="sql" class="c4">SQL Maestro</label>
+                <textarea name="sql" id="sql" class="c12 omega" placeholder="Escriba el SQL"><patTemplate:var name="sqlmaestro" modifier="html8"/></textarea><br>
+            </p>
+
+            
+            <p class="c12 omega">
+                <label for="campoenlace">Campo enlace</label>
+                <input type="text" id="campoenlace" class="c12" name="campoenlace" value="<patTemplate:var name="campo_usuario" modifier="html8"/>"/>
+            </p>
+
+    </patTemplate:tmpl>
+
+            <input type="hidden" name="mode" value="save"/>
+            <input type="submit" value="Guardar cambios" class="boton_standar c2 end" id="guardar_sql"/>
+
+            <patTemplate:tmpl name="error">
+            <p class="error left"><patTemplate:var name="error" modifier="html8"/></p>
+            
+        </form>
+    </pattemplate:tmpl>
+   
+    </div><!-- fin div id="form_sql"-->
+    <div id="form_conf" class="c10 s1">
+        <form action="modconfiguracion.php" method="post" class="c12 omega">
+            
+            <p class="c5">
+                <label for="etiqueta">Etiqueta</label>
+                <input type="text" name="etiqueta" id="etiqueta" class="c12" placeholder="Etiqueta"/>
+            </p>
+            <p class="c7 omega">
+                <label for="campo">Campo</label>
+                <input type="text" name="campo" id="campo" class="c12 omega" placeholder="Campo"/>
+            </p>
+
+            <input type="submit" value="Añadir" class="boton_standar c2 s10 omega" id="anadir"/>
+            <input type="HIDDEN" name="mode" value="add"/>
+        </form>
+    </div><!-- fin div id="form_conf" -->
+    <div id="configuracion">
+          <table border="0" class="c12">
+            <tr class="fila_0">
+                <th class="etiq c4">Etiqueta</th>
+                <th class="camp c7">Campo</th>
+                <th class="cancelar c1">Eliminar</th>
+            </tr>
+            <patTemplate:tmpl name="config">
+                <tr class="<patTemplate:var name="linea"/>">
+                <td class="c4">
+                    <patTemplate:var name="etiqueta" modifier="html8"/>
+                </td>
+                <td class="c7">
+                    <patTemplate:var name="campo" modifier="html8"/>
+                </td>
+                <td class="cancelar c1">
+                    <form action="modconfiguracion.php" method="post" id="borrar<patTemplate:var name="id"/>">
+                        <input type="image" src="img/no.png" name="click" value="eliminar" class="c12 end" onclick="return borrar('<patTemplate:var name="etiqueta"/>',<patTemplate:var name="id"/>)"/>
+                        <input type="HIDDEN" name="mode" value="eliminar"/>
+                        <input type="HIDDEN" name="id_campo_filtro" value="<patTemplate:var name="id"/>" />
+                    </form>
+                </td>
+                </tr>
+            </patTemplate:tmpl>
+        </table>
+
+<patTemplate:tmpl name="count">
+        <p class="num_pag c2">
+            <patTemplate:var name="min" modifier="html8"/>
+        </p>
+    </patTemplate:tmpl>
+<patTemplate:tmpl name="paginacion">
+        <div class="next c4 s8">
+                <!-- Botón de Ir a los primeros registros-->
+            <form action="modconfiguracion.php" method="post" class="c3 omega">
+                <input type="hidden" name="modo" value="irInicio">
+                <input type="submit" value="&lt;&lt; Inicio"  class="boton_standar c12 omega <patTemplate:var name="inicio" modifier="html8"/>"/>
+            </form>                
+                <!-- Botón de Ir Atrás-->
+            <form action="modconfiguracion.php" method="post" class="c3 omega">
+                <input type="hidden" name="modo" value="atras">
+                <input type="submit" value="&lt; Anterior" class="boton_standar c12 omega <patTemplate:var name="anterior" modifier="html8"/>"/>
+            </form>
+                <!-- Botón de Siguiente -->
+            <form action="modconfiguracion.php" method="post" class="c3 omega">
+                <input type="hidden" name="modo" value="siguiente">
+                <input type="submit" value="Siguiente &gt;" class="c12 omega boton_standar <patTemplate:var name="siguiente" modifier="html8"/>"/>
+            </form>
+                <!-- Botón de Ir al Final -->
+            <form action="modconfiguracion.php" method="post" class="c3 omega">
+                <input type="hidden" name="modo" value="irFinal">
+                <input type="submit" value="Final &gt;&gt;" class="c12 omega boton_standar <patTemplate:var name="final" modifier="html8"/>"/>
+            </form>
+        </div><!-- fin div botones navegación -->
+</patTemplate:tmpl> 
+        
+    
+    
+    <div class="filas_tabla_config">
+            <form action="" method="post" id="form_paginas">
+                <input type="hidden" name="modo" value="numfilas">
+                <select name="npag" onclick="pagi()">
+                    <!-- Inicio de la template selectpag -->
+                    <patTemplate:tmpl name="selectpag"> 
+                        <option  value="100"<patTemplate:var name="combo1"/> >100</option>
+                        <option  value="75" <patTemplate:var name="combo2"/> >75</option>
+                        <option  value="50" <patTemplate:var name="combo3"/> >50</option>
+                        <option  value="25" <patTemplate:var name="combo4"/> >25</option>
+                    </pattemplate:tmpl> 
+                    <!-- Fin template selectpag -->
+                </select>
+                <span>Registros por página</span>
+            </form>
+        </div><!--fin div filas_tabla_config -->
+    </div><!-- fin div id="configuracion"-->
+</div><!-- fin div id="wrapper_conf"-->
+
+ <div  id="footer">
+            <div class="row pie" >
+                <p class="c5">2014-NotificAPP</p>
+                <p class="c1 s6"><a href="#"><img src="img/arriba.png"  alt="subir al comienzo"></a></p>
+       
+            </div>
+        </div> <!-- fin div footer-->
+</div><!--fin div id="wrapper_panel"-->
+
+<script>
+       function borrar(name,id){
+            cuadro_dialogo.si_no("Alerta", "Desea borrar "+ name +"?", 
+            function(){
+                $("#borrar"+id).submit();
+                return true;
+            }, 
+            function(){
+                return false;
+            });
+            return false;
+        };
+</script>

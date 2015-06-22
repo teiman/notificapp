@@ -1,0 +1,89 @@
+<style type="text/css">
+    .subnavegador li[title="panel"]{background-color: #2c2b2b;}
+    .subnavegador li[title="panel"] a{ color: #cfc8af;}
+</style>
+<div id="wrapper_panel" class="grid wfull">
+    <div id="envios" class="row">
+        <div class="titulo_pagina">
+            <patTemplate:tmpl name="headers">
+                <h1 class="s1">
+                    <patTemplate:var name="titulopagina" modifier="html8"/>
+                </h1>
+            </patTemplate:tmpl>
+        </div><!--fin div título página -->
+
+        <form action="modenvioatodos.php" method="post" class="c10 s1">
+            <patTemplate:tmpl name="estadoservidor">
+                <input type="hidden" name="estado" value="<patTemplate:var name="estado"/>"/>
+                <input type="submit" class="c2 boton_standar altern" value="<patTemplate:var name="estado"/>" />
+                
+                <div id="envio_activo" class="c6 s1">
+                    <patTemplate:var name="mensajeactivo" modifier="html8"/>
+                </div>
+                <div id="envio_inactivo" class="c6">
+                    <patTemplate:var name="mensajeinactivo" modifier="html8"/>
+                </div>
+
+            </patTemplate:tmpl>
+        </form>
+    </div><!-- final div envios-->
+
+    <div id="panel_control" class="row">
+        
+       
+        <form action="modenvioatodos.php" method="post" id="enviartodo" class="c10 s1">
+            <p class="c12 omega">
+                <label for="titulo" class="c2">Título</label>
+                <input type="text" name="titulo" id="titulo" class="c12 omega"/>
+            </p>
+            <p class="c12 omega">
+                <label for="mensaje_control" class="c2">Mensaje</label>
+                <textarea id="mensaje_control" class="c12 omega"placeholder="Escriba el mensaje" name="mensaje"></textarea>
+            </p>
+            <p class="c4">
+                <label for="plataforma" class="c5">Plataforma</label>
+                <select name="plataforma" id="plataforma" class="c7">
+                    <option value="0">Selecciona</option>
+                    <patTemplate:tmpl name="lista_plataforma">
+                        <option value="<patTemplate:var name="plataforma"/>">
+                    <patTemplate:var name="plataforma"/>
+                    </patTemplate:tmpl>
+                    </option>
+                </select>
+            </p>
+        
+            <input type="hidden" name="accion" value="enviar">
+            <input type="submit" value="Enviar" class="c3 end boton_standar" onclick="return enviar()"/>
+        </form>
+    </div><!--fin div panel_control-->
+    <patTemplate:tmpl name="error">
+    <p class="error s1">
+    <patTemplate:var name="error" modifier="html8"/>
+    </p>
+</patTemplate:tmpl>
+
+ <div  id="footer">
+            <div class="row pie" >
+                <p class="c5">2014-NotificAPP</p>
+                <p class="c1 s6"><a href="#"><img src="img/arriba.png"  alt="subir al comienzo"></a></p>
+       
+            </div>
+        </div> <!-- fin div footer-->
+</div><!-- fin div wrappen_panel-->
+<script type="text/javascript">
+    function enviar(){
+        cuadro_dialogo.si_no("Enviando...", "¿Esta seguro que quiere enviar la notificacion\n\
+a todos los usuarios de la plataforma?",
+        function(){
+            $("#enviartodo").submit();
+            return  true;
+        },
+        function(){
+            // no hay codigo
+            return false;
+        });
+        return false;
+
+    }
+</script>
+

@@ -1,0 +1,178 @@
+<style type="text/css">
+    .subnavegador li[title="log"]{background-color: #2c2b2b;}
+    .subnavegador li[title="log"] a{ color: #cfc8af;}
+</style>
+<patTemplate:tmpl name="logenvios">
+
+    <div id="wrapper_panel" class="grid wfull">
+
+        <div id="log_envios" class="row">
+            <div class="titulo_pagina">
+                <h1 class="s1">Log de Env&#237;os</h1>
+            </div><!-- fin div título página -->
+            <div id="form" class="c10 s1">
+                <form action="modlogenvios.php" method="post" >
+                    <patTemplate:tmpl name="datosintroducidos">
+                        <p class="c9">
+                            <label for="usuario" class="c2">Usuario</label>
+                            <input name="usuario" type="text" id="usuario" class="c12" value="<patTemplate:var name="usuario"/>"/>
+                        </p>
+
+
+                        <!-- Campo introducido por Silvia -->
+                        <p class="c3 omega">
+                            <label for="enviado" class="c2">Enviado</label>
+                            <select name="enviado" id="enviado" class="c12 omega">
+                                <option value="selecciona" <patTemplate:var name="selecciona" modifier="html8"/>>Seleccione una opción</option>
+                                <patTemplate:tmpl name="select_estado">
+                                    <option value="si" id="msgenviado" <patTemplate:var name="selectenviado" modifier="html8"/>>Sí</option>
+                                    <option value="no" id="msgpendiente" <patTemplate:var name="selectpendiente" modifier="html8"/>>No</option>
+                                </pattemplate:tmpl>
+                            </select>
+                        </p>
+                        <!-- Fin nuevo campo -->
+
+                        <p class="c9">
+                            <label for="titulo" class="c2">Título</label>
+                            <input name="titulo" type="text" id="titulo" class="c12" value="<patTemplate:var name="titulo"/>"/>
+                        </p>
+
+                        <p class="c3 omega">
+                            <label for="plataforma" class="c2">Plataforma</label>
+                            <select name="plataforma" id="plataforma" class="c12 omega">
+                                <option value="selecciona" >Seleccione una opción</option>
+                                <patTemplate:tmpl name="list_plataforma">
+                                    <option id="<patTemplate:var name="plataforma"/>" <patTemplate:var name="selected" modifier="html8"/> name="<patTemplate:var name="plataforma"/>" /><patTemplate:var name="plataforma"/></option>
+                                </pattemplate:tmpl>
+                            </select>
+                        </p>
+
+                        <p class="c12 omega">
+                            <label for="mensaje" class="c2">Mensaje</label>
+                            <textarea name="mensaje" id="mensaje" class="c12 omega" /><patTemplate:var name="mensaje"/></textarea>
+                    </p>
+
+
+                    <p class="c4">
+                        <label for="fecha_0" class="c2">Desde</label>
+                        <input name="fechacreaciondesde" type="date" id="fecha_0" class="c12" value="<patTemplate:var name="fechaentrada"/>"/>
+                    </p>
+
+                    <p class="c4 s1">
+                        <label for="fecha_01" class="c2">Hasta</label>
+                        <input name="fechacreacionhasta" type="date" id="fecha_01" class="c12" value="<patTemplate:var name="fechasalida"/>"/>
+                    </p>
+
+
+
+                </pattemplate:tmpl>
+                <input type="submit" name="btnfiltrar" value="Filtrar" id="filtrar" class="c2 s1 omega boton_standar"/>
+                <input type="hidden" name="modo" value="filtrar"/>
+            </form>
+        </div><!-- fin div id form -->
+        <p class="error c10 s1">
+        <patTemplate:var name="errordato"/>
+        </p>
+
+
+        <div id="resultado">
+
+            <table border="0" class="c12">
+                <tr class="fila_0">
+                    <th class="c3">Usuario</th>
+                    <th class="c2">Título</th>
+                    <th class="c2">Fecha env&#237;o</th>
+                    <th class="c1">Platafoma</th>
+                    <th class="c3">Mensaje</th>
+                    <th class="c1">Enviado</th>
+                </tr>
+                <patTemplate:tmpl name="list_entry">
+                    <tr class="<patTemplate:var name="MiClase"/>">
+                        <td class="c3">
+                    <patTemplate:var name="datousuario" modifier="html8"/>
+                    </td>
+                    <td class="c2">
+                    <patTemplate:var name="titulo" modifier="html8"/>
+                    </td>
+                    <td class="c2">
+                    <patTemplate:var name="fechaenvio" modifier="html8"/>
+                    </td>
+                    <td class="c1">
+                    <patTemplate:var name="plataforma" modifier="html8"/>
+                    </td>
+                    <td class="mensaje c3">
+                    <patTemplate:var name="mensaje" modifier="html8"/>
+                    </td>
+                    <td class="c1">
+                        <form action="modlogenvios.php" method="post">
+                            <input type="hidden" name="tipoenvio" value="<patTemplate:var name="estado"/>">
+                                   <input disabled type="submit" value="" width="5" name="borrar"
+                                   style="background:url(<patTemplate:var name="estado"/>) no-repeat;" >
+                        </form>
+                    </td>
+                    </tr>
+                </pattemplate:tmpl>
+            </table>
+            <p class="num_pag c2">
+            <patTemplate:var name="contador"/>
+            </p>
+        
+        <div class="next c4 s8">
+
+             <patTemplate:tmpl name="paginacion">
+            <form action="modlogenvios.php" method="post" class="c3 omega">
+                     <input type="submit" value="&lt;&lt; Inicio"  class="c12 omega boton_standar <patTemplate:var name="claseinicio" modifier="html8"/>">
+                           <input type="hidden" name="modo" value="inicio"/>
+            </form>
+            <form action="modlogenvios.php" method="post" class="c3 omega">
+                <input type="submit" value="&lt; Anterior" class="c12 omega boton_standar"/>
+                <input type="hidden" name="modo" value="atras"/>
+            </form>
+            <form action="modlogenvios.php" method="post" class="c3 omega">
+                <input type="submit" value="Siguiente &gt;" class="c12 omega boton_standar"/>
+                <input type="hidden" name="modo" value="siguiente"/>
+            </form>
+            <form action="modlogenvios.php" method="post" class="c3 omega">
+                <input type="submit" value="Final &gt;&gt;" class="c12 omega boton_standar <patTemplate:var name="clasefinal" modifier="html8"/>"/>
+                       <input type="hidden" name="modo" value="final"/>
+            </form>
+            </patTemplate:tmpl>
+        </div> <!-- fin div para botones de navegación -->
+        <div class="filas_tabla_log">
+            <form id="form_combo" action="modlogenvios.php" method="post">
+                <input type="hidden" name="modo" value="numerofilas"/>
+                <select onclick="enviar_formulario()" name="result" id="resultado_filtro" >
+                    <patTemplate:tmpl name="select_option">
+                        <option value="0" <patTemplate:var name="combouno" modifier="html8"/> >100</option>
+                        <option value="1" <patTemplate:var name="combodos" modifier="html8"/> >150</option>
+                        <option value="2" <patTemplate:var name="combotres" modifier="html8"/> >200</option>
+                        <option value="3" <patTemplate:var name="combocuatro" modifier="html8"/> >250</option>
+                        <option value="4" <patTemplate:var name="combocinco" modifier="html8"/> >300</option>
+                    </patTemplate:tmpl>
+                </select>
+                <span>Registros por página</span>
+            </form>
+        </div> <!-- fin div filas_tablas_log -->
+        
+        </div> <!-- fin div id resultado-->
+
+    </div> <!-- fin div id="log_envios" -->
+
+     <div  id="footer">
+            <div class="row pie" >
+                <p class="c5">2014-NotificAPP</p>
+                <p class="c1 s6"><a href="#"><img src="img/arriba.png"  alt="subir al comienzo"></a></p>
+       
+            </div>
+        </div> <!-- fin div footer-->
+</div> <!-- fin div id="wrapper_panel" -->
+
+<script type="text/javascript">
+
+    function enviar_formulario() {
+        $("#form_combo").submit();
+    }
+
+</script> 
+
+</patTemplate:tmpl>

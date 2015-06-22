@@ -1,0 +1,702 @@
+
+
+@font-face{
+   font-family: "HammersmithOne-Regular";
+   font-style: normal;
+   font-weight: normal;
+   src: url(../fonts/HammersmithOne-Regular.ttf);
+}
+
+/* Generales*/
+
+#wrapper_panel {
+    height: auto!important;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 90px;
+    min-height: 100%;
+    margin-bottom: -50px;
+
+}
+
+html, body{
+	background-color: #cfc8af;
+	font-family: "HammersmithOne-Regular", sans-serif;
+	height: 100%;
+}
+
+a{
+	text-decoration: none;
+}
+
+
+
+#contenido-demo			{	width: 960px; margin: 50px auto 0;}
+	#contenido-demo h2		{	font-size: 4em; margin-bottom: 50px;}
+	ul						{	text-align: left; list-style:none;}
+	ul li 					{	font-size: 18px; padding: 7px 0;}
+	ul .font a 				{ 	color: #BDB191; padding-top: 2px;}
+	ul li a 				{	width: 120px; padding-left: 45px;  text-decoration:none; color:white; font-family:"HammersmithOne-Regular"; }
+	ul li a.desplegable		{  }	
+	ul li li				{	font-size: 16px; padding-left: 30px; margin-left:-40px;}
+.subnavegador{
+	padding-top: 30px;
+	margin-left: -40px;
+	width: 300px;
+	height: 500px;
+	background: #6c644a;
+	top: 80px;
+	position:absolute;
+	z-index: 99;
+}
+
+.subnavegador li:hover{
+	background-color: #2c2b2b;
+
+}
+
+.subnavegador li:hover a{
+	color: #cfc8af;
+}
+.sesion{
+	margin-left: -54px;
+	padding-left: 20px;
+}
+.font{
+	font-size: 20px;
+	color: #ffffff;
+	padding-top: 10px;
+}
+.adm{
+	background: url('../img/llaves.gif') no-repeat 26px 10px;
+}
+.usr{
+	background: url('../img/user.png') no-repeat 26px 15px;
+}
+.out{
+	background: url('../img/out.png') no-repeat 26px 15px;
+}
+.next{
+	margin-top: -25px;
+}
+.next_1{
+	margin-right: 5px;
+}
+
+
+
+
+/* Login */
+
+.caj-log{
+	margin-top: 50px;
+}
+
+.caj-log h1	{
+
+    font-size:22px; 
+    text-align:center; 
+    margin-bottom:25px;
+}
+
+.caj-log p	{
+    font-size:13px;
+    line-height:20px;
+    padding-bottom:50px;
+        }
+
+#wrapper{
+	width: 450px;
+	height: 275px;
+	background: #bababa;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	border-radius: 0.4em;
+}
+#cabecera{
+	width: auto;
+	height: 40px;
+	background: #565656 url('../img/logo_login.png') no-repeat 75px 8px;
+	border-top-left-radius: 0.4em;
+	border-top-right-radius: 0.4em;
+}
+
+#wrapper p{
+	color: white;
+	font-size: 22px;
+}
+#wrapper input{
+	margin-left:20px;
+}
+
+#placeholder{
+	padding-left:5px;
+}
+
+.logo_index{
+	margin-left: 30px;
+	margin-top: 10px;
+	padding-bottom: 22px;
+}
+
+/*---Cabecera ---*/
+.navegador{
+	margin-top: 0;
+}
+
+.navegador li:first-child{
+	padding-top: 0;
+}
+
+.navegador{
+	/*margin-top: -16px;*/
+	background: #6c644a;
+	height: 85px;
+	width: 101%;
+	margin-left:-0.5%;
+	position: fixed;
+	z-index: 99;
+	top: 0;
+}
+
+#logo{
+	margin-left: -35px;
+	margin-top: -20px;
+}
+
+
+/* ---Tipografía ---*/
+h1,h3, .fila_0{
+	font-family: "HammersmithOne-Regular";
+	color:#6c644a;
+	font-weight: bold;
+}
+
+/* ---Título página ---*/
+h1{	
+	font-size:18px;	
+}
+
+h3{
+	font-size: 14px;
+	border-bottom: solid 1px #6c644a;
+}
+.titulo_pagina, .fila_0{
+	border-bottom: solid 1px #6c644a;
+	margin-bottom: 30px;
+}
+
+/* --- Botones Generales y de Navegación en tablas---*/
+.boton_standar{
+	background-color: #a9a9a9;
+	border: solid 1px #6c644a;
+	border-radius: 0.4em;
+	height: 20px;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+	color: #6c644a;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box; /* Firefox */
+}
+.left{
+	float: left;
+}
+.derecha{
+	margin-right:10px;
+	margin-left: 65.2%;
+}
+
+
+.boton_standar:hover{
+	background-color:#d1d0cc ;
+	border: solid 1px #9f9f99;
+	color: #514e4e;
+}
+.ponerestilo, .clasepag{
+	color: #9f9f99;
+	background-color: #d1d0cc;
+	border: solid 1px #9f9f99;
+}
+
+#cancelar_envios{
+	margin-left: 10px;
+}
+
+.next .boton_standar{
+	text-transform: none;
+}
+.next{
+	float: right;
+}
+/*-- Estilos mensajes de error --*/
+
+
+.error{
+	color:#620c18;
+	font-size: 12px;
+	height: 40px;
+}
+
+/*-- Estilos ventana alerta --*/
+
+
+.ui-widget-overlay{
+	background-color: #cfc8af;
+}
+
+.ui-widget-header{
+	background-color: #cc8a16;
+}
+.ui-button{
+	width: 120px;
+	background-color: #cc8a16 !important;
+}
+
+.ui-button-text{
+	margin-left: none;
+}
+
+.ui-dialog-buttonpane{
+	text-align: center;
+}
+
+/*--- Tablas ---*/
+
+table{
+	border-spacing: 0;
+	/*---margin-bottom: 50px;---*/
+	text-align: left;
+	padding-left: 10px;
+}
+
+.fila_0{
+	font-size: 12px;
+	text-transform: uppercase;
+	height: 30px;
+}
+
+th{
+	border-bottom: solid 1px #6c644a;
+}
+
+
+.fila_01, .fila_02{
+	height: auto;
+	
+}
+.fila_02 {
+	background: #dedec8;
+}
+
+
+
+td{
+	font-size: 12px;
+	color: #202020;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+input[name="borrar"]{
+	background-image: url(../img/no.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	border: none;
+	width: 20px;
+	height: 20px;
+	float: right;
+	margin-right: 30%;
+}
+
+input[name="editar"]{
+	background-image: url(../img/edit.gif);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	border: none;
+	width: 20px;
+	height: 20px;
+	margin-left: 30%;
+}
+
+#resultado_0{
+	margin-top: 50px;
+}
+#resultado, #configuracion{
+	position: relative;
+	clear: both;
+	padding-top: 30px;
+}
+
+
+/*--- Paginación tablas ---*/
+
+.num_pag{
+	float: left;
+	margin-left: 10px;
+	margin-top: 1em;
+	font-size: 12px;
+	color:#6c644a;
+}
+form span{
+	font-size: 12px;
+	color: #6c644a;
+}
+
+.filas_tabla, .filas_tabla_param, .filas_tabla_log, .filas_tabla_filtro, .filas_tabla_config{
+	float: left;
+	margin-left: 10px;
+	position: absolute;
+	
+}
+
+
+.filas_tabla_log, .filas_tabla_config{
+	top:-20px;
+}
+
+#menu li{
+	list-style: none;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+
+
+
+#botones{
+	height: 30px;
+	margin-bottom: 30px;
+}
+
+
+
+
+.no, .no_edit{
+	margin-left: 20px;
+}
+
+
+#ok{
+	width:50px;
+	border-radius: 0.4em;
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+	border: 0;
+	height: 27px;
+	background: #e8b313;
+}
+
+
+
+/* ---Formularios ---*/
+#form, #enviartodo, #alta_parametros, #editar_parametro, #dato_filtro, #dato_filtro, #incluir_filtro, #form_sql, #form_conf, .caj-log{
+	padding: 10px;	
+	border: solid 1px #6c644a;
+	border-radius: 0.4em;
+	height: auto;
+}
+
+#incluir_filtro, #form_sql{
+	margin-bottom: 40px;
+}
+
+
+#form_conf{
+	margin-bottom: 60px;
+}
+form p,{
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+form label{
+	color: #6c644a;
+	font-size: 14px;
+}
+
+form input, form select{
+	height: 25px;
+}
+
+#form .boton_standar{
+	margin-top: 33px;
+}
+textarea{
+	height: 120px;
+}
+/*input[type="submit"]{
+	margin-top: 1em;
+	margin-bottom:1em;
+}*/
+input[type="image"]{
+	width: 25px;
+	height: 20px;
+	padding-top: 5px;
+	margin-right: 3%;
+}
+.fech{
+	width: 200px;
+}
+
+/* Panel de control */
+
+.estado{
+	margin-top: 0;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	color: #6c644a;
+}
+
+.altern{
+	margin-top: 10px;
+}
+
+#envios{
+	
+	margin-bottom: 50px;
+}
+
+
+#envio_activo{
+	display: inline;
+	margin-left: 50px;
+	font-size: 18px;
+	color: green;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 22px;
+}
+#envio_inactivo{
+	display: inline;
+	margin-left: 50px;
+	font-size: 18px;
+	color: red;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 22px;
+}
+
+/* Par�metros */
+
+
+#alta_01, #alta_02{
+	display: inline;
+	background: white;
+	border: 0;
+	height: 27px;
+	padding-left: 5px;
+}
+
+.filas_tabla_param{
+	top:-20px;
+}
+/*.param{
+	margin-top: 20px;
+}*/
+
+/* Filtro de env�o */
+
+#filtro_envio{
+	height: auto;
+}
+
+#form_filtro{
+
+}
+#form_filtro p, #titulo_filtro, #provincia_filtro, #sexo_filtro, #enviar_filtro, #cancelar_filtro{
+	display: inline;
+}
+
+
+#prov_filtro p{
+	padding-top: 5px;
+	margin-bottom:5px;	
+}
+#notificacion_filtro{
+	
+	height: 80px;
+}
+#provincia_filtro{
+	width: 250px;
+	margin-left: 65px;
+}
+#sexo_filtro{
+	width: 100px;
+	margin-left: 99px;
+	margin-top: 20px;
+}
+
+#resultado_datos{
+	width: 50px;
+	float: right;
+	margin-right: 500px;
+	margin-bottom: 20px;
+}
+.cancel{
+	margin-left: 5px;
+}
+#wrap{
+	margin-left: auto;
+	margin-right: auto;
+	width: 696px;
+	margin-bottom: 20px;
+}
+
+#botones_filtro{
+	float:left;
+}
+#result_filtro{
+	height: auto;
+	clear:both;
+}
+
+.img_cancel{
+	text-align: center;
+	margin-top: 14px;
+}
+.img_cancel input{
+	width: 25px;
+}
+#sex_filtro{
+	float: right;
+	padding-right: 20px;
+	height: auto;
+}
+#sex_filtro h3{
+	font-size: 16px;
+	font-weight: bold;
+	color: black;
+	margin-top: 0px;
+}
+
+#wrapp{
+	height: auto;
+	
+}
+.fuente{
+	font-size: 14px;
+	color: black;
+	height: 25px;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.regis{
+	font-size: 14px; 
+	margin-right: 400px;
+}
+
+.img_sexo{
+	width:10px;
+	height:10px;
+	margin-left:-30px;
+}
+#aceptar{
+	width: 75px;
+	height: 27px;
+	background: #e8b313;
+	font-weight: bold;
+	color: white;
+	border: 0;
+	border-radius: 0.4em;
+	font-size: 16px;
+	float:left;
+	float:right;
+}
+
+
+/* Configuraci�n*/
+
+#form_sql{
+	height: auto;
+}
+
+#form_conf{
+	height: auto;
+}
+.cancelar form{
+	text-align: center;
+}
+
+/*-- Usuarios --*/
+.eliminar{
+	margin-top:20px; 
+}
+
+/*-- Modificación de usuarios --*/
+#form_mod td{
+	margin-bottom: 10px;
+	color:#6c644a;
+}
+.permiso {
+	padding-left: 20px;
+}
+td .boton_standar {
+	margin-top: 15px;	
+}
+td[colspan]{
+	padding-bottom: 10px;
+}
+
+.next form{
+	margin-bottom: 0;
+}
+.clearfooter{
+	clear: both;
+	height: 25px;
+}
+
+#footer{
+	background-color: #6c644a;
+	font-size: 10px;
+	color: #BDB191;
+	height: 25px;
+	width: 2000px;
+	margin-left: -500px;
+
+}
+#footer .row{
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+#footer p{
+	margin-top: 0;
+	margin-bottom:0;
+}
+
+
+/*Añadidos para el responsive */
+@media handheld, only screen and (max-width: 768px), only screen and (max-device-width: 768px) and (orientation:portrait){
+#resultado_0{margin-top:120px}
+.filas_tabla,.filas_tabla_param,.filas_tabla_log,.filas_tabla_filtro,.filas_tabla_config {display:none}
+.next{margin-top: 10px}
+.next .boton_standar{margin-bottom:0}
+.derecho{margin-right:0;margin-left:0}
+input[name="borrar"]{margin-right:50%}
+input[type="image"]{margin-right:50%;margin-top:5px}
+input[name="editar"]{margin-left: 46%}
+}
+
+@media only screen and (max-width:600px){
+.subnavegador{padding-top: 0; height: 300px}
+ul li{padding: 0;}
+.font{padding-top: 0; font-size: 15px}
+ul li li{font-size: 14px}
+.usr, .adm, .out{background-image: none}
+}
+
+@media only screen and (max-width:480px){
+.ui-dialog{max-width: 300px}
+ul li{padding: 2px 0}
+input[name="editar"]{margin-left: 44%}
+
+}
+
+

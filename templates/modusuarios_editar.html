@@ -1,0 +1,56 @@
+<style type="text/css">
+    .subnavegador li[title="usuarios"]{background-color: #2c2b2b;}
+    .subnavegador li[title="usuarios"] a{ color: #cfc8af;}
+</style>
+<patTemplate:tmpl name="usuario_editar">
+
+<div id="wrapper_panel" class="grid wfull">
+
+    <div id="mod_usuarios" class="row">
+        <div class="titulo_pagina">
+            <h1 class="s1">Modificar usuario</h1>
+        </div><!--fin div título página-->
+        <form method="post" class="c10 s1">
+
+            <input type="hidden" name="modo" value="guardarcambios">
+            <input type="hidden" name="id_usuario" value="<patTemplate:var name="id_usuario" />">
+
+        <div id="form_mod">
+            
+            <table border="0" class="c12">
+
+                <tr><td class="c5">Usuario:</td><td class="c7"><input type="text" name="login" class="c12 omega" value="<patTemplate:var name="login" modifier="html8"/>"></td></tr>
+                <tr><td class="c5">Nueva contraseña:</td><td class="c7"><input type="password" name="pass1" class="c12 omega" value=""></td></tr>
+                <tr><td class="c5">Nueva contraseña (escribir de nuevo):</td><td class="c7"><input type="password" name="pass2" class="c12 omega" value=""></td></tr>
+                <tr><td colspan="2">Lista de permisos: </td></tr>
+                <patTemplate:tmpl name="lista_permisos">
+            
+                <tr><td class="c5 permiso">Acceso a <patTemplate:var name="path"/></td><td class="c7">             
+                
+                    <input type="checkbox" name="permisos[]" value="<patTemplate:var name="id_permiso"/>"  <patTemplate:var name="checked"/>  >  permitir
+          
+
+                    </td></tr>
+                </patTemplate:tmpl>
+
+                <tr><td class="c5"></td><td class="c7"><input type="submit" class="boton_standar c4 s3" name="envio" value="Guardar">
+
+                <input type="button" name="envio" class="boton_standar c4 s1 omega" onclick="location.href='modusuarios.php'" value="Cancelar">
+                </td></tr>
+            </table>
+        </div><!--fin div for_mod-->
+
+        </form>
+
+    </div><!--fin div mod_usuarios-->
+
+    <div class="clearfooter"></div>
+    <div  id="footer">
+        <div class="row pie" >
+            <p class="c5">2014-NotificAPP</p>
+            <p class="c1 s6"><a href="#"><img src="img/arriba.png"  alt="subir al comienzo"></a></p>
+       
+        </div>
+    </div> <!-- fin div footer-->
+</div><!-- fin div wrapper_panel-->
+</patTemplate:tmpl>

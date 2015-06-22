@@ -1,0 +1,56 @@
+<div id="wrapper_panel" class="grid wfull">
+
+
+    <div id="login" class="row">
+
+        <div class="caj-log c12 omega">
+        <div class="titulo_pagina">
+            <h1>Acceso a la aplicación</h1>
+        </div>
+
+<form method="post" class="c8 s2">
+
+<input type="hidden" name="modo" value="entrar"/>
+
+
+    <p class="s1">
+        <label for="focuseame" class="c2">Usuario</label>
+        <input type="text" name="login" id="focuseame" class="c9">
+    </p>
+
+    <p class="s1">
+        <label for="pass" class="c2">Contraseña</label>
+        <input type="password" name="pass" id="pass" class="c9">
+    </p>
+
+   
+    <input type="submit" name="Login" class="c4 s4 boton_standar">
+   
+   
+
+
+
+        <div id="mensaje-error-logueo" class="error c12 s1 oculto{MENSAJECSS}"><p><patTemplate:var name="mensaje-error-logueo" modifier="html8" /></p></div>
+
+
+</form>
+
+    </div><!-- caj-log -->
+
+
+        </div><!-- #login -->
+
+</div><!-- #wrapper_panel -->
+
+<script>
+
+    $(function(){
+        $("#focuseame").focus();
+
+    });
+
+
+</script>
+
+
+

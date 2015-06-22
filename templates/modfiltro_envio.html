@@ -1,0 +1,239 @@
+<style type="text/css">
+    .subnavegador li[title="filtro"]{background-color: #2c2b2b;}
+    .subnavegador li[title="filtro"] a{color: #cfc8af;}
+</style>
+<div id="wrapper_panel" class="grid wfull">
+<div id="filtro_envio" class="row">
+        <div class="titulo_pagina">
+            <h1 class="s1">Filtro de Envíos</h1>
+        </div><!-- fin div título página -->
+    <div id="form_filtro">
+        <form action="modfiltro_envio.php" id="dato_filtro" method="post" class="c10 s1">
+            <patTemplate:tmpl name="read">
+                <p class="c10">
+                    <label for="titulo_filtro" class="c4">Titulo de la notificación</label>
+                    <input type="text" name="t_filtro" class="c12" id="titulo_filtro" <patTemplate:var name="editar" modifier="html8"/> value="<patTemplate:var name="titulo" modifier="html8"/>"/>
+                </p>
+                <p class="c2 omega">
+                    <label for="plataforma_filtro" class="c12">Plataforma</label>
+
+                    <select name="plataforma" id="plataforma_filtro" class="c12 omega" <patTemplate:var name="editar" modifier="html8"/>>
+                        <option value="0">Selecciona</option>
+                        <patTemplate:tmpl name="plataformas">
+                            <option <patTemplate:var name="selected" modifier="html8"/> value="<patTemplate:var name="plataforma" modifier="html8"/>"> 
+                                <patTemplate:var name="plataforma" modifier="html8"/>
+                            </option>
+                        </patTemplate:tmpl>
+                    </select>
+                </p>
+
+                <p class="c12 omega">
+                    <label for="notificacion_filtro">Notificación</label>
+                    <textarea name="notificacion" id="notificacion_filtro" class="c12 omega" <patTemplate:var name="editar" modifier="html8"/>><patTemplate:var name="notificacion" modifier="html8"/></textarea>
+                </p>
+            </patTemplate:tmpl>
+        
+            <patTemplate:tmpl name="buttons">
+                <div id="botones_filtro" class="c12">             
+                    
+                    <div id="filtro" style="<patTemplate:var name="mostrar" modifier="html8"/>">
+                         
+                        <input type="submit" value="Filtrar" id="filtrar_filtro" class="boton_standar c2 s10 omega" name="filtrar_filtro" />
+                        <input type="HIDDEN" name="modo" value="filtrar"/>
+              
+                    </div><!-- fin div filtro-->
+                </div><!-- fin div id botones_filtro -->
+           
+        </form>
+
+            <div id="envio_filtro" style="<patTemplate:var name="ocultar" modifier="html8"/>">
+                <form action="modfiltro_envio.php" id="enviar" class="c2 s7" method="post">
+                    <a href="obsoleto/cola_envios.html"><input type="submit" value="Enviar notificaciones" class="boton_standar c12" id="enviar_filtro" onclick="return comprobacion()"></a>
+                    <input type="HIDDEN" name="modo" value="enviar"/>
+                </form>
+                <form action="modfiltro_envio.php" method="post" class="c2">
+                    <input type="submit" value="Editar notificaciones" class="boton_standar c12" id="cancelar_filtro">
+                    <input type="HIDDEN" name="modo" value="editar"/>
+                </form>
+            </div><!-- fin div envio_filtro -->
+        </patTemplate:tmpl>
+    </div><!-- fin div id="form_filtro" -->
+    <patTemplate:tmpl name="error">
+        <p class="error c10 s1">
+        <patTemplate:var name="error" modifier="html8"/>
+        </p>
+    </patTemplate:tmpl>
+    <form action="modfiltro_envio.php" method="post" class="c10 s1" id="incluir_filtro">
+        <div id="wrapp">
+
+               
+            <patTemplate:tmpl name="disabled">
+            <p class="c5">
+                <label for="plataforma_filtro">Etiqueta</label>
+                <select name="plataforma1" class="c12" id="plataforma_filtro" <patTemplate:var name="disabled" modifier="html8"/>>
+                    <option value=""></option>
+                    <patTemplate:tmpl name="filtro">
+                    <option value="<patTemplate:var name="campo" modifier="html8"/>">
+                    <patTemplate:var name="etiqueta" modifier="html8"/>
+                    </option>
+                    </patTemplate:tmpl>
+                </select>
+            </p>
+            <p class="c2">
+                <label for="cuadro_provincia">Condición</label>
+                    <select name="plataforma2" id="cuadro_provincia" class="c12" <patTemplate:var name="disabled" modifier="html8"/>>
+                        <option value=""></option>
+                        <patTemplate:tmpl name="comparadores">
+                        <option value="<patTemplate:var name="comparadores" modifier="html8"/>">
+                        <patTemplate:var name="comparadores" modifier="html8"/>
+                        </option>
+                        </patTemplate:tmpl>
+                    </select>
+            </p>
+
+            <p class="c5">
+                <label for="cuadro_sexo">Valor</label>
+                <input type="text" name="plataforma3" class="c12"id="cuadro_sexo"<patTemplate:var name="disabled" modifier="html8"/>/>
+            </p>
+      
+        
+            <input type="submit" value="Añadir" class="boton_standar c2 s10" id="anadir_filtro" <patTemplate:var name="disabled" modifier="html8"/> />
+            </patTemplate:tmpl>
+            <input type="HIDDEN" name="modo" value="anadir"/>
+        
+
+        </div> <!-- fin div id wrapp -->
+    </form>
+
+    <div id="result_filtro" class="c12 omega">
+    
+        <div id="prov_filtro" class="c12 omega">
+            <h3>Filtros añadidos</h3>
+            <patTemplate:tmpl name="enum_filtros">
+            <form action="modfiltro_envio.php" class="c12 omega" id="<patTemplate:var name="nombre_form" modifier="html8"/>" method="post">
+                <div class="c12 omega <patTemplate:var name="linea" modifier="html8"/>" style="<patTemplate:var name="mostrar_filtro" modifier="html8"/>">
+                    <p class="fuente c11">
+                    <patTemplate:var name="filtro" modifier="html8"/>
+                    </p>
+                    <input type="image" src="img/no.png" onclick="return borrar('#<patTemplate:var name="nombre_form" modifier="html8"/>', '<patTemplate:var name="filtro" modifier="html8"/>')" class="c1 end <patTemplate:var name="ocultar_eliminar"/>"
+                       />
+                </div><!--div con patTemplate name linea-->
+               
+                <br>
+
+                <input type="HIDDEN" name="modo" value="eliminar" />
+                <input type="HIDDEN" name="idfiltro" value="<patTemplate:var name="filtro" modifier="html8"/>" />
+            </form>
+            </patTemplate:tmpl>
+        </div> <!-- fin div id prov_filtro -->
+    
+
+    </div><!-- fin div id result_filtro -->
+
+
+<br style="clear:both"/>
+
+</div><!--fin div filtro_envio-->
+
+
+<div id="resultado_01" class="row" style="<patTemplate:tmpl name="tabla"><patTemplate:var name="mostrar_tabla" modifier="html8"/></patTemplate:tmpl>">
+
+
+    <table id="tabla_filtro" border="0" class="c12 omega">
+        <patTemplate:tmpl name="record_set">
+            <tr class="{LINEA}">{HTML}</tr>
+        </patTemplate:tmpl>
+    </table>
+    <patTemplate:tmpl name="count">
+        <p class="num_pag c2">
+            <patTemplate:var name="min" modifier="html8"/>
+        </p>
+    </patTemplate:tmpl>
+    <patTemplate:tmpl name="paginacion">
+    
+    <div class="next c4 s8 omega">
+
+        <form action="modfiltro_envio.php" method="post" class="c3 omega">
+                <!-- Botón de Ir a los primeros registros-->                
+            <input type="hidden" name="modo" value="atras">
+            <input type="submit" value="&lt;&lt; Inicio"  class="boton_standar c12 omega <patTemplate:var name="inicio" modifier="html8"/>"/>
+        </form>                
+                <!-- Botón de Ir Atrás-->
+        <form action="modfiltro_envio.php" method="post" class="c3 omega">
+            <input type="hidden" name="modo" value="catras">
+            <input type="submit" value="&lt; Anterior" class="boton_standar c12 omega <patTemplate:var name="anterior" modifier="html8"/>"/>
+        </form>
+                <!-- Botón de Siguiente -->
+        <form action="modfiltro_envio.php" method="post" class="c3 omega">
+                <input type="hidden" name="modo" value="cadelante">
+                <input type="submit" value="Siguiente &gt;" class="c12 omega boton_standar <patTemplate:var name="siguiente" modifier="html8"/>"/>
+        </form>
+                <!-- Botón de Ir al Final -->
+        <form action="modfiltro_envio.php" method="post" class="c3 omega">
+                <input type="hidden" name="modo" value="adelante">
+                <input type="submit" value="Final &gt;&gt;" class="c12 omega boton_standar <patTemplate:var name="final" modifier="html8"/>"/>
+        </form>
+    </div> <!-- fin div next botones navegación -->
+    
+    </patTemplate:tmpl> 
+
+    <div class="filas_tabla_filtro">        
+        
+        <form action="modfiltro_envio.php" method="post">
+            <select name="resultado" id="resultado_filtro">
+                <patTemplate:tmpl name="select_option">
+                    <option <patTemplate:var name="four" modifier="html8"/> value="100">100</option>
+                    <option <patTemplate:var name="three" modifier="html8"/> value="75">75</option>
+                    <option <patTemplate:var name="two" modifier="html8"/> value="50">50</option>
+                    <option <patTemplate:var name="one" modifier="html8"/> value="25">25</option>
+                </patTemplate:tmpl>
+            </select>
+            <span>Registros por página</span>
+            <input type="HIDDEN" name="modo" value="cambiar_record"/>
+         </form>
+    </div><!-- fin div filas_tabla_filtro -->
+
+</div> <!-- fin div resultado_01 -->  
+
+    
+
+<div class="clearfooter"></div>
+ <div  id="footer">
+            <div class="row pie" >
+                <p class="c5">2014-NotificAPP</p>
+                <p class="c1 s6"><a href="#"><img src="img/arriba.png"  alt="subir al comienzo"></a></p>
+       
+            </div>
+        </div> <!-- fin div footer-->
+</div><!-- fin div id="wrapper_panel" -->
+
+     <script type="text/javascript">  
+        
+       function comprobacion(){
+           cuadro_dialogo.si_no("Alerta" ,"Esta seguro de que desea enviar las notificaciones", 
+           function(){
+               $("#enviar").submit();
+               return true;
+           },
+           function(){
+               return false;
+           });
+           return false;
+       } 
+        
+       function borrar(form, name){
+            cuadro_dialogo.si_no("Alerta", "Desea borrar "+ name +"?", 
+            function(){
+                $(form).submit();
+                return true;
+            }, 
+            function(){
+                return false;
+            });
+            return false;
+        };
+       
+       $('#resultado_filtro').change(function(){
+           this.form.submit();
+       });
+    </script>

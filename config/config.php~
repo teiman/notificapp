@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Fichero de configuración 
+ *
+ */
+$SELF_APPLICATION = __FILE__;
+$base = str_replace("config/config.php", "/", $SELF_APPLICATION);
+$base = str_replace("config\\config.php", "\\", $base);
+$base = basename($base);
+$BASE_APLICACION = $base;
+
+
+$global_host_db = "localhost";
+$global_user_db = "root";
+$global_pass_db = "root";
+$ges_database = "tiendas";
+$templatesDir = "/var/www/tiendas/templates/";
+$base_estaticos = "http://127.0.0.1/tiendas/";
+
+
+//print_r($_SERVER);
+//die();
+$usandoFirebug = true; //en true, permite que firebug se utilice. en false, desactiva la api de console/firebug   
+
+

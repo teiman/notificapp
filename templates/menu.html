@@ -1,0 +1,44 @@
+<header id="header_1">
+    <ul class="navegador">
+        <li><a href="#" class="desplegable"><img src="img/logo.png" alt="Notificapp" title="Notificapp" id="logo"/></a>
+            <ul class="subnavegador  oculto">
+                <li class="sesion font adm"><a href="#">Administrador</a></li>
+
+                <patTemplate:Auth command="modlogenvios/">
+                <li title="cola"><a href="modcolanotificaciones.php?modo=conexion">Cola de Envíos</a></li>
+                </patTemplate:Auth>
+
+                <patTemplate:Auth command="modlogenvios/">
+                <li title="log"><a href="modlogenvios.php?modo=reset">Log de Envíos</a></li>
+                </patTemplate:Auth>
+
+
+                <patTemplate:Auth command="modenvioatodos/">
+                <li title="panel"><a href="modenvioatodos.php">Panel de Control</a></li>
+                </patTemplate:Auth>
+
+
+                <patTemplate:Auth command="modparametros/">
+                <li title="parametros"><a href="modparametros.php?modo=reset">Parámetros</a></li>
+                </patTemplate:Auth>
+
+                <li class="sesion font usr"><a href="#">Usuario</a></li>
+
+                <patTemplate:Auth command="modfiltro_envio/">
+                <li title="filtro"><a href="modfiltro_envio.php?modo=reset_data">Filtro de Envío</a></li>
+                </patTemplate:Auth>
+
+                <patTemplate:Auth command="modconfiguracion/">
+                <li title="configuracion"><a href="modconfiguracion.php">Configuración</a></li>
+                </patTemplate:Auth>
+
+
+                <patTemplate:Auth command="modusuarios/">
+                <li title="usuarios"><a href="modusuarios.php">Usuarios</a></li>
+                 </patTemplate:Auth>
+
+                <li class="sesion font out"><a href="logout.php">Cerrar Sesión</a></li>
+            </ul>
+        </li>
+    </ul>
+</header>

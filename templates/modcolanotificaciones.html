@@ -1,0 +1,200 @@
+
+<style type="text/css">
+    .subnavegador li[title="cola"]{background-color: #2c2b2b; }
+    .subnavegador li[title="cola"] a{color: #cfc8af;}
+</style>
+<!-- Inicio template botones -->
+<patTemplate:tmpl name="botones">
+    <div id="wrapper_panel" class="grid wfull">
+        <div id="cola_envios" class="row">
+            <div class="titulo_pagina">
+                <!-- Inicio template headers -->
+                <patTemplate:tmpl name="headers">
+                    <h1 class="s1"><patTemplate:var name="titulopagina" modifier="html8"/></h1>
+                </patTemplate:tmpl>
+                <!-- Fin template headers -->
+            </div> <!-- fin div class título página -->
+            <div id="botones" class="c4 s8">
+                <!-- Refresca la lista de envios-->
+                <form action="modcolanotificaciones.php" method="post" class="c6">
+                    <input type="hidden" name="modo" value="refrescar">
+                    <input type="submit" value="Refrescar" id="refrescar_envios" class="boton_standar c12">
+                </form>
+                <!-- Cancela todos los envios-->
+
+                <form action="modcolanotificaciones.php" method="post" id="borrartodo" class="c6">
+                    <input type="hidden" name="modo" value="cancelartodos">
+
+                    <input type="submit" value="Cancelar todos" id="cancelar_envios" onclick="return borrar_todo()" class="c12 boton_standar <patTemplate:var name="controldato" />">
+                </form>
+
+            </div><!-- fin div id=botones -->
+            <div id="resultado_0">
+                <table border="0" class="c12">
+
+                    <tr class="fila_0">
+                        
+                        <th class="c3">Usuario</th>
+                        <th class="c3">Título</th>
+                        <th class="c1">Plataforma</th>
+                        <th class="c4">Mensaje</th>
+                        <th class="c1">Cancelar</th>
+                       
+                    </tr>
+                    <!-- Inicio template lista -->
+                    <patTemplate:tmpl name="lista">
+                        <tr class="<patTemplate:var name="estilo"/> font_1">
+                            <td class="c3">
+                        <patTemplate:var name="dato_usuario" modifier="html8"/>
+                        </td>
+                        <td class="c3">
+                        <patTemplate:var name="titulo" modifier="html8"/>
+                        </td>
+                        <td class="c1">
+                        <patTemplate:var name="plataforma" modifier="html8"/>
+                        </td>
+                        <td class="mensaje c4">
+                        <patTemplate:var name="notificacion" modifier="html8"/>
+                        </td>
+                        <!-- Cancela un registro determinado por la ID-->
+                        <td class="<patTemplate:var name="classcancel"/> c1">
+                            <form action="modcolanotificaciones.php" method="post" id="borrar_dato<patTemplate:var name="id"/>">
+                              <input type="hidden" name="modo" value="cancelar">
+                                <input type="hidden" name="id_notificacion" value="<patTemplate:var name="id"/>">
+                                       <input type="submit" value=""  name="borrar"
+                                       title="Eliminar" onclick="return borrar_dato(<patTemplate:var name="id"/>)"> <!-- template id -->
+                            </form>
+                        </td>
+                        <!-- Inicio template vacio -->
+                        <patTemplate:tmpl name="vacio">
+                            <tr class="<patTemplate:var name="classvacio"/>">
+                        </patTemplate:tmpl>
+                        <!-- Fin template vacio -->
+                    <td>No hay datos que mostrar.</td>
+                    </tr>
+                    </tr>
+                </patTemplate:tmpl>
+                    <!-- Fin template lista -->
+            </table>
+
+                <!-- Inicio template paginas -->
+            <patTemplate:tmpl name="paginas">
+                <p class="num_pag c2">
+                <patTemplate:var name="min" modifier="html8"/>
+                </p>
+            </patTemplate:tmpl>
+                <!-- Fin template paginas -->
+
+
+                <!-- Inicio template stylepaginacion --> 
+            <patTemplate:tmpl name="stylepaginacion">
+            <div class="next c4 s6">
+                <!-- Botón de Ir a los primeros registros-->
+                <form action="modcolanotificaciones.php" method="post" class="c3 omega">
+                    <input type="hidden" name="modo" value="irInicio">
+                    <!-- IMPORTANTE!!! : Para cambiar el estilo del class hay que modificarlo en
+                    modcolanotificaciones.php , para el botón inicio la variable es $styleinicio
+                    y para el estilo del boton ir al final es $stylefinal -->
+                    <input type="submit" value="&lt;&lt; Inicio"  class="boton_standar c12 omega <patTemplate:var name="styleinicio"/> <patTemplate:var name="controldato" />"/>
+                </form>                
+                <!-- Botón de Ir Atrás-->
+                <form action="modcolanotificaciones.php" method="post" class="c3 omega">
+                    <input type="hidden" name="modo" value="atras">
+                    <input type="submit" value="&lt; Anterior" class="boton_standar c12 omega <patTemplate:var name="controldato" />"/>
+                </form>
+                <!-- Botón de Siguiente -->
+                <form action="modcolanotificaciones.php" method="post" class="c3 omega">
+                    <input type="hidden" name="modo" value="siguiente">
+                    <input type="submit" value="Siguiente &gt;" class="c12 omega boton_standar <patTemplate:var name="controldato" />"/>
+                </form>
+                <!-- Botón de Ir al Final -->
+                <form action="modcolanotificaciones.php" method="post" class="c3 omega">
+                    <input type="hidden" name="modo" value="irFinal">
+                    <input type="submit" value="Final &gt;&gt;" class="<patTemplate:var name="stylefinal"/> <patTemplate:var name="controldato" />"/>
+                </form>
+            </div>  <!-- final div para botones de navegación -->              
+          </patTemplate:tmpl>  <!-- Fin template paginacion -->
+
+           
+        
+        <div class="filas_tabla">
+            <form action="modcolanotificaciones.php" method="post" id="form_paginas">
+                <input type="hidden" name="modo" value="numfilas">
+                <select name="npag" onclick="pagi()">
+                    <!-- Inicio de la template selectpag -->
+                    <patTemplate:tmpl name="selectpag"> 
+                        <option  value="100"<patTemplate:var name="combo1"/> >100</option>
+                        <option  value="75" <patTemplate:var name="combo2"/> >75</option>
+                        <option  value="50" <patTemplate:var name="combo3"/> >50</option>
+                        <option  value="25" <patTemplate:var name="combo4"/> >25</option>
+                    </pattemplate:tmpl> 
+                    <!-- Fin template selectpag -->
+                </select>
+                <span>Registros por página</span>
+            </form>
+        </div> <!-- fin div filas_tablas-->
+       
+       
+    </div> <!-- fin div id=resultado_0-->
+
+    </div><!-- final div id cola de envios -->
+    
+ 
+
+        <div  id="footer">
+            <div class="row pie" >
+                <p class="c5">2014-NotificAPP</p>
+                <p class="c1 s6"><a href="#"><img src="img/arriba.png"  alt="subir al comienzo"></a></p>
+       
+            </div>
+        </div> <!-- fin div footer-->
+</div><!-- fin div grid wfull wrapper_panel-->
+</patTemplate:tmpl> <!-- Fin template botones -->
+
+<script type="text/javascript">
+    /*
+     * Función que envia el formulario mediante su id.
+     */
+    function pagi(){
+        $('#form_paginas').submit();
+    }
+
+</script>
+<script type="text/javascript">
+     /*
+      * Función que muestra una ventana de confirmación para eliminar
+      * un dato concreto.
+      * @param id
+      */   
+    function borrar_dato(id){
+        cuadro_dialogo.si_no("Eliminando...", "¿Seguro que quiere eliminar la notificación?",
+        function(){
+            $("#borrar_dato"+id).submit();
+            return  true;
+        },
+        function(){
+            return false;
+        });
+        return false;
+
+    }
+        
+      /*
+      * Función que muestra una ventana de confirmación para eliminar
+      * todos los datos.
+      */  
+        
+    function borrar_todo(){
+        cuadro_dialogo.si_no("Eliminando...", "¿Seguro que quiere eliminar todas las notificaciones pendientes?",
+        function(){
+            $('#borrartodo').submit();
+            return  true;
+        },
+        function(){
+            return false;
+        });
+        return false;
+
+    }
+</script>
+

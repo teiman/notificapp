@@ -1,0 +1,73 @@
+<patTemplate:tmpl name="page">
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>
+            <pattemplate:var name="titulo"/>
+        </title>
+      
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <title>
+            <patTemplate:var name="title" modifier="html8"/>
+        </title>
+
+        <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/ui/jquery-ui.js"></script>
+
+
+
+        <script type="text/javascript" src="js/dialogbox.js"></script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function () { // Script del Navegador
+            $("ul.subnavegador").hide();
+            $("a.desplegable").toggle(
+            function () {
+            $(this).parent().find("ul.subnavegador").slideDown('fast');
+            },
+            function () {
+            $(this).parent().find("ul.subnavegador").slideUp('fast');
+            }
+            );
+            });
+
+        </script>
+
+        <style>
+
+            .oculto {
+                display: none;
+            }
+
+            .mostrar {
+                display: block;
+            }
+
+        </style>
+        
+        <link href="css/portal.css" rel="stylesheet" type="text/css" />
+        <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>   
+
+
+        </head>
+
+
+        <body>
+
+        <patTemplate:tmpl name="menu" src="menu.html" autoload="on" parse="on"/>
+
+        <div class="bloque-central">
+            <patTemplate:tmpl name="listado" src="vacio.html" autoload="off" parse="on"/>
+
+        </div><!-- final div bloque-central-->
+        
+
+         <patTemplate:tmpl name="dialogbox" src="dialogbox.html" autoload="on" parse="off"/>
+        
+        </body>
+    </html>
+</patTemplate:tmpl>
